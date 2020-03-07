@@ -1,2 +1,2 @@
-# ftp-action
-A github action that mirrors your code to a remote ftp server.
+# A GitHub Action for dealing with profanity
+This action automatically closes issues and pull requests that contains profane words.
