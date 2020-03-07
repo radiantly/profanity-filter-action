@@ -1,0 +1,11 @@
+name: "Profanity filter"
+description: "No more profanity in your repository!"
+author: "Radiantly"
+
+runs:
+  using: "node12"
+  image: "dist/index.js"
+
+branding:
+  icon: "user-check"
+  color: "gray-dark"

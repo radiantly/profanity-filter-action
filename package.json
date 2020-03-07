@@ -1,0 +1,24 @@
+{
+  "name": "profanity-filter-action",
+  "version": "1.0.0",
+  "description": "This action automatically closes issues and pull requests that contain profane words.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radiantly/profanity-filter-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/radiantly/profanity-filter-action/issues"
+  },
+  "homepage": "https://github.com/radiantly/profanity-filter-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1"
+  }
+}
