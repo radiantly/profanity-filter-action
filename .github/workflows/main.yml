@@ -1,6 +1,10 @@
 name: Profanity check
 
-on: issues
+on: 
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
 
 jobs:
   build:
