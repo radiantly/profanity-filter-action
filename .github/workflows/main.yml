@@ -1,0 +1,13 @@
+name: Profanity check
+
+on: issues
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Profanity check
+      uses: .
