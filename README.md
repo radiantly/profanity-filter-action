@@ -1,5 +1,6 @@
 # A GitHub Action for dealing with profanity
-This action automatically closes issues that contain profane words.
+![Status](https://github.com/radiantly/profanity-filter-action/workflows/Profanity%20check/badge.svg)
+This action automatically filters issues that contain profane words.
 
 ## Example usage
 
@@ -9,6 +10,8 @@ name: Profanity check
 on: 
   issues:
     types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
 
 jobs:
   build:
@@ -16,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy docs
+      - name: Profanity filter
         uses: radiantly/profanity-filter-action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
