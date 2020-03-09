@@ -217,7 +217,21 @@ async function run() {
           body: cleanBody
         });
       } else {
-        console.log("Issue is free from profanity.")
+        console.log("Issue is free from profanity.");
+      }
+    } else if (_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.eventName === 'issue_comment') {
+      let issueComment = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.comment;
+      let filter = new Filter();
+      let cleanComment = filter.clean(issueComment.body);
+      if(cleanComment !== issueComment.body) {
+        console.log("Profanity detected, updating issue comment.");
+        await octokit.issues.updateComment({
+          ..._actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo,
+          comment_id: issueComment.id,
+          body: cleanComment
+        });
+      } else {
+        console.log("Issue comment is free from profanity.");
       }
     }
   } catch(error) {

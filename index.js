@@ -22,7 +22,21 @@ async function run() {
           body: cleanBody
         });
       } else {
-        console.log("Issue is free from profanity.")
+        console.log("Issue is free from profanity.");
+      }
+    } else if (github.context.eventName === 'issue_comment') {
+      let issueComment = github.context.payload.comment;
+      let filter = new Filter();
+      let cleanComment = filter.clean(issueComment.body);
+      if(cleanComment !== issueComment.body) {
+        console.log("Profanity detected, updating issue comment.");
+        await octokit.issues.updateComment({
+          ...github.context.repo,
+          comment_id: issueComment.id,
+          body: cleanComment
+        });
+      } else {
+        console.log("Issue comment is free from profanity.");
       }
     }
   } catch(error) {
