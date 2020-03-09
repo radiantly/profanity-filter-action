@@ -1,6 +1,6 @@
 {
   "name": "profanity-filter-action",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "This action automatically closes issues and pull requests that contain profane words.",
   "main": "index.js",
   "scripts": {
