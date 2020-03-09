@@ -3,7 +3,7 @@ description: "No more profanity in your repository!"
 author: "Radiantly"
 
 inputs:
-  PERSONAL_TOKEN:
+  repo-token:
     description: 'Your github personal access token.'
     required: true
 

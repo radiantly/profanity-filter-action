@@ -18,6 +18,6 @@ jobs:
     steps:
       - name: Deploy docs
         uses: radiantly/profanity-filter-action@v1
-        env:
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```

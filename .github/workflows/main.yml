@@ -16,4 +16,4 @@ jobs:
     - name: Profanity check
       uses: ./
       with:
-        PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}

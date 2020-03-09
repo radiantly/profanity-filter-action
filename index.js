@@ -4,7 +4,7 @@ const Filter = require('bad-words');
 
 async function run() {
   try {
-    const token = core.getInput('PERSONAL_TOKEN');
+    const token = core.getInput('repo-token');
     const octokit = new github.GitHub(token);
 
     console.log("Profanity check commencing!");
