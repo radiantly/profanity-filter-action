@@ -1,5 +1,6 @@
 # A GitHub Action for dealing with profanity
 ![Status](https://github.com/radiantly/profanity-filter-action/workflows/Profanity%20check/badge.svg)
+
 This action automatically filters issues that contain profane words.
 
 ## Example usage
@@ -20,7 +21,7 @@ jobs:
 
     steps:
       - name: Profanity filter
-        uses: radiantly/profanity-filter-action@v1
+        uses: radiantly/profanity-filter-action@v1.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
