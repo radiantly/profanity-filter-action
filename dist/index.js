@@ -197,21 +197,36 @@ __webpack_require__.r(__webpack_exports__);
 
 const Filter = __webpack_require__(837);
 
-try {
-  console.log("Hello World!");
-  let currentContext = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context;
-  if (currentContext.eventName === 'issue') {
-    let filter = new Filter();
-    let title = currentContext.issue.title;
-    let body = currentContext.issue.body;
-    let cleanTitle = filter.clean(title);
-    let cleanBody = filter.clean(body);
-    if(cleanTitle === title) console.log("Title is clean!");
-    if(cleanBody == body) console.log("Title is clean!");
+async function run() {
+  try {
+    const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('PERSONAL_TOKEN');
+    const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.GitHub(token);
+
+    console.log("Profanity check commencing!");
+    if (_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.eventName === 'issues') {
+      let issue = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.issue;
+      let filter = new Filter();
+      let cleanTitle = filter.clean(issue.title);
+      let cleanBody = filter.clean(issue.body);
+      if(cleanTitle !== issue.title || cleanBody !== issue.body) {
+        console.log("Profanity detected, updating issue.");
+        await octokit.issues.update({
+          ..._actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo,
+          issue_number: issue.number,
+          title: cleanTitle,
+          body: cleanBody
+        });
+      } else {
+        console.log("Issue is free from profanity.")
+      }
+    }
+  } catch(error) {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
   }
-} catch (error) {
-  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
+
+run();
+
 
 /***/ }),
 
