@@ -2,11 +2,6 @@ name: "Profanity filter"
 description: "No more profanity in your repository!"
 author: "Radiantly"
 
-inputs:
-  repo-token:
-    description: 'Your github personal access token.'
-    required: true
-
 runs:
   using: "node12"
   main: "dist/index.js"

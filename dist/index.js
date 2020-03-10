@@ -199,8 +199,7 @@ const Filter = __webpack_require__(837);
 
 async function run() {
   try {
-    const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('repo-token');
-    const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.GitHub(token);
+    const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.GitHub(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.token);
 
     console.log("Profanity check commencing!");
     if (_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.eventName === 'issues') {
