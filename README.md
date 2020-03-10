@@ -22,4 +22,6 @@ jobs:
     steps:
       - name: Profanity filter
         uses: radiantly/profanity-filter-action@v1.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
