@@ -13,6 +13,8 @@ on:
     types: [opened, edited]
   issue_comment:
     types: [created, edited]
+  pull_request:
+    types: [opened, edited]
 
 jobs:
   build:
