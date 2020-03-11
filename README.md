@@ -5,7 +5,7 @@ This action automatically filters issues that contain profane words.
 
 ## Example usage
 
-```shell
+```yaml
 name: Profanity check
 
 on: 
