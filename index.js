@@ -38,6 +38,22 @@ async function run() {
       } else {
         console.log("Issue comment is free from profanity.");
       }
+    } else if (github.context.eventName === 'pull_request') {
+      let pr = github.context.payload.pull_request;
+      let filter = new Filter();
+      let cleanTitle = filter.clean(pr.title);
+      let cleanBody = filter.clean(pr.body);
+      if(cleanTitle !== pr.title || cleanBody !== pr.body) {
+        console.log("Profanity detected, updating pull request.");
+        await octokit.pulls.update({
+          ...github.context.repo,
+          pull_number: pr.number,
+          title: cleanTitle,
+          body: cleanBody
+        });
+      } else {
+        console.log("Pull request is free from profanity.");
+      }
     }
   } catch(error) {
     core.setFailed(error.message);

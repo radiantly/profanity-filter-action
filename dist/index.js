@@ -233,6 +233,22 @@ async function run() {
       } else {
         console.log("Issue comment is free from profanity.");
       }
+    } else if (_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.eventName === 'pull_request') {
+      let pr = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.pull_request;
+      let filter = new Filter();
+      let cleanTitle = filter.clean(pr.title);
+      let cleanBody = filter.clean(pr.body);
+      if(cleanTitle !== pr.title || cleanBody !== pr.body) {
+        console.log("Profanity detected, updating pull request.");
+        await octokit.pulls.update({
+          ..._actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo,
+          pull_number: pr.number,
+          title: cleanTitle,
+          body: cleanBody
+        });
+      } else {
+        console.log("Pull request is free from profanity.");
+      }
     }
   } catch(error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
